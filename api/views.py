@@ -1,6 +1,6 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import viewsets
+
+from rest_framework import permissions
 
 from .models import Todo
 from .serializers import TodoSerializer
@@ -10,5 +10,4 @@ from .serializers import TodoSerializer
 class TodoView(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
     queryset = Todo.objects.all()
-
-    
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
